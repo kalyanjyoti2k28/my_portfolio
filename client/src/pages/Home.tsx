@@ -6,13 +6,17 @@ import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Internship from "@/components/Internship";
 import Contact from "@/components/Contact";
+import ScrollMachine from "@/components/ScrollMachine";
 import { motion } from "framer-motion";
 import GearAnimation from "@/components/GearAnimation";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       <Navigation />
+      
+      {/* Floating scroll-based machine */}
+      <ScrollMachine />
       
       <main>
         <Hero />

@@ -33,13 +33,9 @@ export default function Hero() {
   ];
 
   return (
-    <section ref={heroRef} id="home" className="min-h-[150vh] flex items-start pt-20 relative overflow-hidden technical-grid">
-      {/* Main Content Container */}
-      <motion.div 
-        className="container mx-auto px-6 z-10 w-full"
-        style={{ opacity }}
-      >
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+    <section ref={heroRef} id="home" className="min-h-screen flex items-center relative overflow-hidden technical-grid">
+      <div className="container mx-auto px-6 z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -79,23 +75,14 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* 3D Machine Animation */}
+          {/* Simple Hero Machine */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative lg:h-96 flex items-center justify-center"
-            style={{ 
-              scale,
-              rotateX,
-              transformStyle: "preserve-3d"
-            }}
           >
-            {/* Main Machine Container */}
-            <motion.div 
-              className="relative w-64 h-64"
-              style={{ scale: machineScale }}
-            >
+            <div className="relative w-64 h-64">
               {/* Central Engine Core */}
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full border-4 border-primary/50 backdrop-blur-sm"
@@ -112,7 +99,6 @@ export default function Hero() {
                   boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                 }}
               >
-                {/* Inner gear mechanism */}
                 <motion.div 
                   className="absolute inset-6 bg-gradient-to-br from-muted to-card rounded-full border-2 border-accent/50 flex items-center justify-center"
                   animate={{ rotate: -360 }}
@@ -156,56 +142,19 @@ export default function Hero() {
                   </motion.div>
                 </motion.div>
               ))}
-
-              {/* Machine Details that appear on scroll */}
-              {machineDetails.map((detail, index) => {
-                const IconComponent = detail.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    className={`absolute ${detail.position} w-12 h-12 bg-card/90 backdrop-blur-sm rounded-lg border border-primary/30 flex items-center justify-center`}
-                    style={{ opacity: detailOpacity }}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: index * 0.2 + 1 }}
-                  >
-                    <IconComponent className={`w-6 h-6 ${detail.color}`} />
-                    <motion.div
-                      className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-center whitespace-nowrap bg-background/80 px-2 py-1 rounded"
-                      style={{ opacity: detailOpacity }}
-                    >
-                      {detail.label}
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-
-              {/* Energy field effect */}
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                animate={{
-                  background: [
-                    "radial-gradient(circle, rgba(183, 121, 31, 0.1) 0%, transparent 70%)",
-                    "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-                    "radial-gradient(circle, rgba(183, 121, 31, 0.1) 0%, transparent 70%)"
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary/60"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        style={{ opacity }}
       >
         <div className="text-center">
-          <div className="text-sm mb-2">Scroll to explore</div>
+          <div className="text-sm mb-2">Scroll to explore machine</div>
           <div className="w-6 h-10 border-2 border-primary/40 rounded-full mx-auto relative">
             <motion.div
               className="w-1 h-3 bg-primary/60 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2"
