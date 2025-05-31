@@ -70,13 +70,13 @@ export default function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "kalyanjyoti.barman@example.com",
+      value: "kb2838@mejgec.ac.in",
       color: "text-primary"
     },
     {
       icon: Phone,
       label: "Phone", 
-      value: "+91 XXXXX XXXXX",
+      value: "+91 8597525739",
       color: "text-accent"
     },
     {
