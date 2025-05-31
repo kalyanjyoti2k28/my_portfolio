@@ -1,9 +1,23 @@
-import { motion } from "framer-motion";
-import { Eye, Download } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Eye, Download, Cpu, Zap, Cog, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GearAnimation from "./GearAnimation";
+import { useRef } from "react";
 
 export default function Hero() {
+  const heroRef = useRef(null);
+  const { scrollY } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Transform values for scroll-based animations
+  const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
+  const rotateX = useTransform(scrollY, [0, 500], [0, 15]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const machineScale = useTransform(scrollY, [0, 800], [1, 3]);
+  const detailOpacity = useTransform(scrollY, [200, 600], [0, 1]);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -11,42 +25,21 @@ export default function Hero() {
     }
   };
 
-  return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden technical-grid">
-      {/* Floating Gears Background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-        <motion.div 
-          className="absolute top-1/4 left-1/4"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-        >
-          <GearAnimation size="large" className="text-muted-foreground" />
-        </motion.div>
-        <motion.div 
-          className="absolute top-3/4 right-1/4"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        >
-          <GearAnimation size="medium" className="text-primary" />
-        </motion.div>
-        <motion.div 
-          className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        >
-          <GearAnimation size="large" className="text-accent" />
-        </motion.div>
-        <motion.div 
-          className="absolute top-1/2 right-1/3"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-        >
-          <GearAnimation size="small" className="text-muted-foreground" />
-        </motion.div>
-      </div>
+  const machineDetails = [
+    { icon: Cpu, label: "Neural Processing", position: "top-1/4 left-1/4", color: "text-blue-400" },
+    { icon: Zap, label: "Power Core", position: "top-1/3 right-1/3", color: "text-yellow-400" },
+    { icon: Cog, label: "Mechanical Systems", position: "bottom-1/3 left-1/3", color: "text-green-400" },
+    { icon: Wrench, label: "Tool Integration", position: "bottom-1/4 right-1/4", color: "text-red-400" }
+  ];
 
-      <div className="container mx-auto px-6 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+  return (
+    <section ref={heroRef} id="home" className="min-h-[150vh] flex items-start pt-20 relative overflow-hidden technical-grid">
+      {/* Main Content Container */}
+      <motion.div 
+        className="container mx-auto px-6 z-10 w-full"
+        style={{ opacity }}
+      >
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -86,49 +79,167 @@ export default function Hero() {
             </div>
           </motion.div>
 
+          {/* 3D Machine Animation */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative lg:h-96 flex items-center justify-center"
+            style={{ 
+              scale,
+              rotateX,
+              transformStyle: "preserve-3d"
+            }}
           >
-            <div className="relative">
-              {/* Central large gear */}
+            {/* Main Machine Container */}
+            <motion.div 
+              className="relative w-64 h-64"
+              style={{ scale: machineScale }}
+            >
+              {/* Central Engine Core */}
               <motion.div 
-                className="w-32 h-32 mx-auto"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full border-4 border-primary/50 backdrop-blur-sm"
+                animate={{ 
+                  rotate: 360,
+                  boxShadow: [
+                    "0 0 20px rgba(183, 121, 31, 0.3)",
+                    "0 0 40px rgba(183, 121, 31, 0.6)",
+                    "0 0 20px rgba(183, 121, 31, 0.3)"
+                  ]
+                }}
+                transition={{ 
+                  rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                  boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                }}
               >
-                <GearAnimation size="large" className="text-primary w-32 h-32" />
+                {/* Inner gear mechanism */}
+                <motion.div 
+                  className="absolute inset-6 bg-gradient-to-br from-muted to-card rounded-full border-2 border-accent/50 flex items-center justify-center"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                >
+                  <Cpu className="w-12 h-12 text-primary" />
+                </motion.div>
               </motion.div>
-              
-              {/* Smaller surrounding gears */}
-              <motion.div 
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              >
-                <GearAnimation size="medium" className="text-accent" />
-              </motion.div>
-              
-              <motion.div 
-                className="absolute top-0 right-0"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              >
-                <GearAnimation size="small" className="text-muted-foreground" />
-              </motion.div>
-              
-              <motion.div 
-                className="absolute bottom-0 left-0"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              >
-                <GearAnimation size="small" className="text-primary/60" />
-              </motion.div>
-            </div>
+
+              {/* Rotating gears around the core */}
+              {[0, 90, 180, 270].map((rotation, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute w-16 h-16"
+                  style={{
+                    top: '50%',
+                    left: '50%',
+                    transformOrigin: '50% 50%',
+                  }}
+                  animate={{ 
+                    rotate: rotation + (index % 2 === 0 ? 360 : -360)
+                  }}
+                  transition={{ 
+                    duration: 4 + index,
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                >
+                  <motion.div
+                    className="w-full h-full"
+                    style={{
+                      x: Math.cos(rotation * Math.PI / 180) * 80 - 32,
+                      y: Math.sin(rotation * Math.PI / 180) * 80 - 32,
+                    }}
+                  >
+                    <GearAnimation 
+                      size="medium" 
+                      reverse={index % 2 === 1}
+                      className={`text-${index % 2 === 0 ? 'primary' : 'accent'} w-16 h-16`} 
+                    />
+                  </motion.div>
+                </motion.div>
+              ))}
+
+              {/* Machine Details that appear on scroll */}
+              {machineDetails.map((detail, index) => {
+                const IconComponent = detail.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    className={`absolute ${detail.position} w-12 h-12 bg-card/90 backdrop-blur-sm rounded-lg border border-primary/30 flex items-center justify-center`}
+                    style={{ opacity: detailOpacity }}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: index * 0.2 + 1 }}
+                  >
+                    <IconComponent className={`w-6 h-6 ${detail.color}`} />
+                    <motion.div
+                      className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-center whitespace-nowrap bg-background/80 px-2 py-1 rounded"
+                      style={{ opacity: detailOpacity }}
+                    >
+                      {detail.label}
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Energy field effect */}
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                animate={{
+                  background: [
+                    "radial-gradient(circle, rgba(183, 121, 31, 0.1) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(183, 121, 31, 0.1) 0%, transparent 70%)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
           </motion.div>
         </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary/60"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        style={{ opacity }}
+      >
+        <div className="text-center">
+          <div className="text-sm mb-2">Scroll to explore</div>
+          <div className="w-6 h-10 border-2 border-primary/40 rounded-full mx-auto relative">
+            <motion.div
+              className="w-1 h-3 bg-primary/60 rounded-full absolute left-1/2 top-2 transform -translate-x-1/2"
+              animate={{ y: [0, 16, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Background ambient gears */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className={`absolute`}
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ 
+              duration: 10 + i * 2, 
+              repeat: Infinity, 
+              ease: "linear",
+              delay: i * 0.5
+            }}
+          >
+            <GearAnimation 
+              size={i % 3 === 0 ? "large" : i % 2 === 0 ? "medium" : "small"} 
+              className="text-muted-foreground"
+            />
+          </motion.div>
+        ))}
       </div>
     </section>
   );
