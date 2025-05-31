@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap');
+
+:root {
+  --background: 240 10% 3.9%; /* #0F172A - Dark charcoal */
+  --foreground: 0 0% 98%; /* #FAFAFA - Light text */
+  --muted: 215 16% 18%; /* #2D3748 - Steel dark */
+  --muted-foreground: 215 13% 56%; /* #718096 - Steel light */
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 215 16% 18%; /* #2D3748 - Steel dark */
+  --card-foreground: 0 0% 98%;
+  --border: 215 20% 27%; /* #4A5568 - Steel */
+  --input: 215 20% 27%;
+  --primary: 39 85% 40%; /* #B7791F - Gear bronze */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 215 16% 18%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 217 91% 60%; /* #3B82F6 - Dark blue accent */
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 39 85% 40%;
+  --radius: 0.5rem;
+  
+  /* Custom mechanical colors */
+  --steel: 215 20% 27%; /* #4A5568 */
+  --steel-dark: 215 25% 17%; /* #2D3748 */  
+  --steel-light: 215 13% 56%; /* #718096 */
+  --gear-bronze: 39 85% 40%; /* #B7791F */
+  --copper: 30 60% 50%; /* #CD7F32 */
+  --charcoal: 240 10% 3.9%; /* #1A202C */
+  --gear-gold: 45 93% 67%; /* #F6E05E */
+  --dark-blue: 217 91% 60%; /* #3B82F6 */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 215 16% 18%;
+  --muted-foreground: 215 13% 56%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 215 16% 18%;
+  --card-foreground: 0 0% 98%;
+  --border: 215 20% 27%;
+  --input: 215 20% 27%;
+  --primary: 39 85% 40%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 215 16% 18%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 39 85% 40%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .gear-rotate {
+    animation: gear-rotate 8s linear infinite;
+  }
+  
+  .gear-rotate-reverse {
+    animation: gear-rotate-reverse 6s linear infinite;
+  }
+  
+  .gear-rotate-slow {
+    animation: gear-rotate 12s linear infinite;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  .gear-click {
+    animation: gear-click 0.3s ease-out;
+  }
+  
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .technical-grid {
+    background-image: 
+      linear-gradient(hsla(var(--steel-light) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(var(--steel-light) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .skill-card {
+    background: linear-gradient(145deg, hsl(var(--muted)) 0%, hsl(var(--card)) 100%);
+    border: 1px solid hsla(var(--gear-bronze) / 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .skill-card:hover {
+    border-color: hsl(var(--gear-bronze));
+    box-shadow: 0 10px 30px hsla(var(--gear-bronze) / 0.2);
+    transform: translateY(-5px);
+  }
+
+  .project-card {
+    background: linear-gradient(145deg, hsl(var(--muted)) 0%, hsl(var(--card)) 100%);
+    border: 1px solid hsla(var(--gear-bronze) / 0.2);
+    transition: all 0.4s ease;
+  }
+
+  .project-card:hover {
+    border-color: hsl(var(--gear-bronze));
+    box-shadow: 0 15px 40px hsla(var(--gear-bronze) / 0.15);
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .btn-mechanical {
+    background: linear-gradient(145deg, hsl(var(--gear-bronze)) 0%, hsl(var(--copper)) 100%);
+    border: 2px solid hsl(var(--gear-bronze));
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-mechanical:hover {
+    background: linear-gradient(145deg, hsl(var(--copper)) 0%, hsl(var(--gear-bronze)) 100%);
+    box-shadow: 0 8px 25px hsla(var(--gear-bronze) / 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-mechanical:active {
+    animation: gear-click 0.3s ease-out;
+  }
+
+  .section-title {
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(var(--gear-bronze)), hsl(var(--copper)));
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  @keyframes gear-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes gear-rotate-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 20px hsla(var(--gear-bronze) / 0.3); }
+    100% { box-shadow: 0 0 40px hsla(var(--gear-bronze) / 0.8); }
+  }
+
+  @keyframes gear-click {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(0.95) rotate(15deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gear-bronze));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--copper));
+}
