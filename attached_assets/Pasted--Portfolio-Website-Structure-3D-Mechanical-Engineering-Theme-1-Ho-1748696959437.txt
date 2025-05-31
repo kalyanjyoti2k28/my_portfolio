@@ -1,0 +1,82 @@
+
+### 🔧 **Portfolio Website Structure – 3D Mechanical Engineering Theme**
+
+---
+
+#### 🏠 **1. Home (Landing Page)**
+
+* Hero image: 3D animation of gears or CAD model in motion
+* Tagline: *"Aspiring Mechanical Engineer | Future Innovator | Tech Enthusiast"*
+* One-liner about you: *“First-year Mechanical Engineering student passionate about design, manufacturing, and problem-solving.”*
+* Call-to-Action (CTA): “View My Work” or “Download Resume”
+
+---
+
+#### 🙋‍♂️ **2. About Me**
+
+  name - Kalyanjyoti Barman
+* Profile photo (optional)
+* Short bio (based on your resume's “Objective”)
+* Fun fact or quote: e.g., “Design is not just what it looks like. Design is how it works.” – Steve Jobs
+
+---
+
+#### 🛠️ **3. Skills**
+
+Display in a **mechanical-themed card or gear layout**:
+
+* Programming: C, C++, Java
+* Tools: AutoCAD (Basic), MS Excel
+* Soft Skills: Teamwork, Communication
+* Language Skills: Hindi (Fluent), English (Proficient), Bengali (Basic)
+
+---
+
+#### 🏫 **4. Education**
+
+* College name Jalpaiguri Govt Engineering college
+* Degree: B.Tech in Mechanical Engineering
+* Duration: 2024–2028
+* Current status: Completed 1st Year
+
+---
+
+#### 📚 **5. Projects & Activities**
+
+* List of seminars attended (add more if possible)
+* Certificates or screenshots (if available)
+* Highlight your current AutoCAD online course
+
+---
+
+#### 🧑‍💼 **6. Internship Objective**
+
+* Dedicated section titled “Seeking Internship”
+* Include cities preferred (e.g., Kolkata)
+* Types of industries: Manufacturing, Design, Workshop
+
+---
+
+#### 🖼️ **7. Portfolio / Gallery**
+
+* Upload any design sketches, mini-projects, or CAD models
+* Even simple Excel-based mechanical calculations can be shown
+* Use interactive sliders or lightbox view
+
+---
+
+#### 📞 **8. Contact Me**
+
+* Contact form
+* Phone, Email (from your resume)
+* LinkedIn (if you have)
+* Location: Cooch Behar, West Bengal
+
+---
+
+#### 🎨 **Design/Theme Suggestions**
+
+* **Color Scheme:** Steel grey, dark blue, gear bronze, white text
+* **Fonts:** Bold technical fonts like Orbitron, Roboto Mono
+* **Animations:** Hover gear rotation, CAD preview animation, button click spark effects
+* **Frameworks:** HTML/CSS with Bootstrap or React + Three.js for 3D animations
